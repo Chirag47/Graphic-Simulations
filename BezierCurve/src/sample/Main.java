@@ -35,7 +35,6 @@ public class Main extends Application {
         primaryStage.setScene(new Scene(root, 800,600));
 
         primaryStage.setTitle("Bezier Curve");
-        primaryStage.getIcons().add(new Image("./Images/logo.png"));
         primaryStage.show();
     }
     void createCircles(){

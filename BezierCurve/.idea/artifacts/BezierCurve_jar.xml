@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="BezierCurve:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/BezierCurve_jar</output-path>
+    <root id="archive" name="BezierCurve.jar">
+      <element id="module-output" name="BezierCurve" />
+    </root>
+  </artifact>
+</component>
