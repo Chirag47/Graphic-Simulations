@@ -5,8 +5,11 @@ import javafx.event.EventHandler;
 import javafx.scene.Cursor;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.image.*;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
@@ -18,18 +21,33 @@ public class Main extends Application {
     ImageView view = new ImageView(img);
     PixelWriter pixelWriter = img.getPixelWriter();
     PixelReader pixelReader = img.getPixelReader();
+    Label circleP0 = new Label("P0 : ");
+    Label circleP1 = new Label("P1 : ");
+    Label circleP2 = new Label("P2 : ");
+    Label circleP3 = new Label("P3 : ");
+
     double orgSceneX, orgSceneY;
     double orgTranslateX, orgTranslateY;
     double x,y;
     double x0 = 150,x1 = 200,x2 = 350,x3 = 400;
     double y0 = 150,y1 = 50,y2 = 50,y3 = 150;
+    Label P0 = new Label(String.format("%.1f,%.1f",x0,y0));
+    Label P1 = new Label(String.format("%.1f,%.1f",x1,y1));
+    Label P2 = new Label(String.format("%.1f,%.1f",x2,y2));
+    Label P3 = new Label(String.format("%.1f,%.1f",x3,y3));
+
+
     @Override
     public void start(Stage primaryStage) {
 
         createCircles();
         drawBezierCurve();
         Group root = new Group();
-        root.getChildren().addAll(circle_Red, circle_Green, circle_Blue,circle_Black,view);
+        HBox box1 = new HBox(circleP0,P0);
+        HBox box2 = new HBox(circleP1,P1);
+        HBox box3 = new HBox(circleP2,P2);
+        HBox box4 = new HBox(circleP3,P3);
+        root.getChildren().addAll(circle_Red, circle_Green, circle_Blue,circle_Black,view,new VBox(box1,box2,box3,box4));
 
         primaryStage.setResizable(false);
         primaryStage.setScene(new Scene(root, 800,600));
@@ -143,19 +161,24 @@ public class Main extends Application {
                     if(((Circle)t.getSource()).equals(circle_Red)){
                         x0 = x;
                         y0 = y;
+                        P0.setText(String.format("%.1f,%.1f",x0,y0));
                     }
                     else if(((Circle)t.getSource()).equals(circle_Green)){
                         x1 = x;
                         y1 = y;
+                        P1.setText(String.format("%.1f,%.1f",x1,y1));
                     }
                     else if(((Circle)t.getSource()).equals(circle_Blue)){
                         x2 = x;
                         y2 = y;
+                        P2.setText(String.format("%.1f,%.1f",x2,y2));
                     }
                     else if(((Circle)t.getSource()).equals(circle_Black)){
                         x3 = x;
                         y3 = y;
+                        P3.setText(String.format("%.1f,%.1f",x3,y3));
                     }
+
                     drawBezierCurve();
 
                 }
